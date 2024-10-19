@@ -27,12 +27,44 @@ require 'rspec/rails'
 
 # Checks for pending migrations and applies them before tests are run.
 # If you are not using ActiveRecord, you can remove these lines.
+
+VCR_LOGGER_PATH = "#{Rails.root}/log/#{Rails.env}/vcr.log".freeze
+
+VCR.configure do |config|
+  config.before_record do |cassette|
+    cassette.response.body.force_encoding('UTF-8')
+  end
+  config.ignore_hosts 'codeclimate.com'
+  config.cassette_library_dir = 'spec/cassettes'
+  config.hook_into :webmock
+  config.configure_rspec_metadata!
+  config.allow_http_connections_when_no_cassette = false
+end
+
+Shoulda::Matchers.configure do |config|
+  config.integrate do |with|
+    with.test_framework :rspec
+    with.library :active_record
+    with.library :active_model
+    with.library :rails
+  end
+end
+
+RSpec::Sidekiq.configure do |config|
+  config.warn_when_jobs_not_processed_by_sidekiq = false
+end
+
 begin
   ActiveRecord::Migration.maintain_test_schema!
 rescue ActiveRecord::PendingMigrationError => e
   abort e.to_s.strip
 end
 RSpec.configure do |config|
+  # config.include FactoryBotMacros
+  config.include Devise::Test::ControllerHelpers, type: :controller
+  # config.include Response::JSONParser, type: :controller
+  # config.include Request::JSONContentType, type: :controller
+  config.order = :random
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_paths = [
     Rails.root.join('spec/fixtures')
@@ -66,3 +98,5 @@ RSpec.configure do |config|
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
 end
+
+RSpec::Matchers.define_negated_matcher :not_change, :change
