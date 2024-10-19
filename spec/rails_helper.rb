@@ -27,6 +27,35 @@ require 'rspec/rails'
 
 # Checks for pending migrations and applies them before tests are run.
 # If you are not using ActiveRecord, you can remove these lines.
+
+VCR_LOGGER_PATH = "#{Rails.root}/log/#{Rails.env}/vcr.log".freeze
+
+VCR.configure do |config|
+  config.before_record do |cassette|
+    cassette.response.body.force_encoding('UTF-8')
+  end
+  config.ignore_hosts 'codeclimate.com'
+  config.cassette_library_dir = 'spec/cassettes'
+  config.hook_into :webmock
+  config.configure_rspec_metadata!
+  config.allow_http_connections_when_no_cassette = false
+end
+
+require 'test-prof/recipes/rspec/let_it_be'
+
+Shoulda::Matchers.configure do |config|
+  config.integrate do |with|
+    with.test_framework :rspec
+    with.library :active_record
+    with.library :active_model
+    with.library :rails
+  end
+end
+
+RSoec::Sidekiq.configure do |config|
+  config.warn_when_jobs_not_processed_by_sidekiq = false
+end
+
 begin
   ActiveRecord::Migration.maintain_test_schema!
 rescue ActiveRecord::PendingMigrationError => e
@@ -71,3 +100,5 @@ RSpec.configure do |config|
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
 end
+
+Rspec::Matchers.define_negated_matcher :not_change, :change
