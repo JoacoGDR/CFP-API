@@ -41,8 +41,6 @@ VCR.configure do |config|
   config.allow_http_connections_when_no_cassette = false
 end
 
-require 'test-prof/recipes/rspec/let_it_be'
-
 Shoulda::Matchers.configure do |config|
   config.integrate do |with|
     with.test_framework :rspec
@@ -52,7 +50,7 @@ Shoulda::Matchers.configure do |config|
   end
 end
 
-RSoec::Sidekiq.configure do |config|
+RSpec::Sidekiq.configure do |config|
   config.warn_when_jobs_not_processed_by_sidekiq = false
 end
 
@@ -101,4 +99,4 @@ RSpec.configure do |config|
   # config.filter_gems_from_backtrace("gem name")
 end
 
-Rspec::Matchers.define_negated_matcher :not_change, :change
+RSpec::Matchers.define_negated_matcher :not_change, :change
