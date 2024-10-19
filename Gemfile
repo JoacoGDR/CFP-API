@@ -31,6 +31,29 @@ gem "tzinfo-data", platforms: %i[ windows jruby ]
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", require: false
 
+gem "devise", "~> 4.9"
+gem "devise-i18n"
+
+gem "httparty", "~> 0.22.0"
+
+gem "rails-i18n", "~> 7.0"
+
+gem "jwt", "~> 2.9"
+
+gem "csv"
+gem "write_xlsx"
+
+gem "pghero"
+
+gem "get_process_mem"
+
+gem "bullet"
+
+gem "health_check", "~> 3.1"
+
+gem "activeadmin", "~> 3.2"
+gem "activeadmin_addons", "~> 1.10"
+
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
@@ -72,6 +95,11 @@ group :test do
   # Code coverage
   gem "simplecov", require: false
 
+  gem "vcr", "~> 6.3"
+  gem "timecop", "~> 0.9.10"
+
+  gem "rspec-deep-ignore-order-matcher"
+
   gem "shoulda-matchers", "~> 6.4"
   # For stubbing HTTP requests
   gem "webmock", "~> 3.24"
@@ -84,3 +112,6 @@ group :test do
 end
 
 gem "sidekiq", "~> 7.3"
+gem "sidekiq-failures"
+gem "sidekiq-scheduler", "~> 5.0"
+gem "sidekiq-unique-jobs", "~> 8.0"
