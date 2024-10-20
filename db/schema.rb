@@ -46,7 +46,21 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_20_024827) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "catch_quota_allocations", force: :cascade do |t|
+    t.bigint "species_id", null: false
+    t.string "owner_type", null: false
+    t.bigint "owner_id", null: false
+    t.float "amount", null: false
+    t.date "allocation_date", null: false
+    t.string "detail"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["owner_type", "owner_id"], name: "index_catch_quota_allocations_on_owner"
+    t.index ["species_id"], name: "index_catch_quota_allocations_on_species_id"
+  end
+
   create_table "catch_quotas", force: :cascade do |t|
+    t.bigint "catch_quota_allocation_id"
     t.string "owner_type", null: false
     t.bigint "owner_id", null: false
     t.bigint "species_id", null: false
@@ -54,11 +68,13 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_20_024827) do
     t.date "start_date", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["catch_quota_allocation_id"], name: "index_catch_quotas_on_catch_quota_allocation_id"
     t.index ["owner_type", "owner_id"], name: "index_catch_quotas_on_owner"
     t.index ["species_id"], name: "index_catch_quotas_on_species_id"
   end
 
   create_table "catches", force: :cascade do |t|
+    t.boolean "incidental", default: false, null: false
     t.bigint "vessel_id", null: false
     t.bigint "species_id", null: false
     t.float "weight", null: false
@@ -173,6 +189,8 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_20_024827) do
     t.index ["registration_code"], name: "index_vessels_on_registration_code", unique: true
   end
 
+  add_foreign_key "catch_quota_allocations", "species"
+  add_foreign_key "catch_quotas", "catch_quota_allocations"
   add_foreign_key "catch_quotas", "species"
   add_foreign_key "catches", "species"
   add_foreign_key "catches", "vessels"
