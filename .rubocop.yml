@@ -1,8 +1,48 @@
-# Omakase Ruby styling for Rails
-inherit_gem: { rubocop-rails-omakase: rubocop.yml }
+AllCops:
+  NewCops: disable
+  Exclude:
+    - db/**/*
+    - bin/**/*
+    - config/**/*
+    - spec/rails_helper.rb
+    - spec/spec_helper.rb
 
-# Overwrite or add rules to create your own house style
-#
-# # Use `[a, [b, c]]` not `[ a, [ b, c ] ]`
-# Layout/SpaceInsideArrayLiteralBrackets:
-#   Enabled: false
+Style/Documentation:
+  Enabled: false
+
+Layout/LineLength:
+  Max: 120
+  Exclude:
+    - spec/**/*
+
+Layout/HashAlignment:
+  Enabled: true
+  Exclude:
+    - lib/tasks/auto_annotate_models.rake
+
+Metrics/BlockLength:
+  Exclude:
+    - spec/**/*
+    - lib/tasks/auto_annotate_models.rake
+    - app/admin/**/*
+    - app/views/admin/**/*
+    - config/routes.rb
+    - config/environments/*
+    - db/schema.rb
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+RSpec/FilePath:
+  Enabled: false
+
+require:
+  - rubocop-rspec
+  - rubocop-rails
+
+Naming/VariableNumber:
+  EnforcedStyle: snake_case
+
+Rails/RakeEnvironment:
+  Exclude:
+    - lib/tasks/auto_annotate_models.rake
