@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_10_20_024827) do
+ActiveRecord::Schema[7.2].define(version: 2024_10_20_034122) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -104,6 +104,15 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_20_024827) do
     t.index ["company_id"], name: "index_company_ownership_changes_on_company_id"
     t.index ["new_owner_id"], name: "index_company_ownership_changes_on_new_owner_id"
     t.index ["previous_owner_id"], name: "index_company_ownership_changes_on_previous_owner_id"
+  end
+
+  create_table "consumers", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "api_key", null: false
+    t.string "api_secret", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_consumers_on_name", unique: true
   end
 
   create_table "maximum_allowable_catches", force: :cascade do |t|
