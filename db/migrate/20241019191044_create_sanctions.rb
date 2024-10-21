@@ -3,8 +3,8 @@ class CreateSanctions < ActiveRecord::Migration[7.2]
     create_table :sanctions do |t|
       t.references :vessel, foreign_key: true
       t.string :description
+      t.integer :type, null: false
       t.date :date, null: false
-      t.references :sanction_type, foreign_key: true, null: false
       t.timestamps
     end
   end
