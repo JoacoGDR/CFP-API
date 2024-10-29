@@ -4,9 +4,12 @@ class CreateConsumers < ActiveRecord::Migration[7.2]
       t.string :name, null: false
       t.string :api_key, null: false
       t.string :api_secret, null: false
+      t.timestamp :last_nonce, null: false
 
       t.index :name, unique: true
       t.timestamps
     end
+
+    add_index :consumers, :api_key, unique: true
   end
 end
