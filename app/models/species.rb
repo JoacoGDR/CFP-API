@@ -12,4 +12,6 @@ class Species < ApplicationRecord
   has_many :vessels, through: :catches
   has_many :catch_quotas, dependent: :destroy
   has_many :catch_quota_allocations, dependent: :destroy
+
+  scope :quotated, -> { joins(:catch_quotas).distinct }
 end

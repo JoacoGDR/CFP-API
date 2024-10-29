@@ -15,7 +15,6 @@
 class CatchQuotaAllocation < ApplicationRecord
   belongs_to :owner, polymorphic: true
   belongs_to :species
-  has_one :company, through: :owner
 
   has_many :catch_quotas, dependent: :destroy
 end
