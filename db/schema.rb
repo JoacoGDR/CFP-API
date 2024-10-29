@@ -110,8 +110,10 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_20_034122) do
     t.string "name", null: false
     t.string "api_key", null: false
     t.string "api_secret", null: false
+    t.datetime "last_nonce", precision: nil, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["api_key"], name: "index_consumers_on_api_key", unique: true
     t.index ["name"], name: "index_consumers_on_name", unique: true
   end
 
