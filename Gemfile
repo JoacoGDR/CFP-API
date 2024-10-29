@@ -58,6 +58,9 @@ gem 'health_check', '~> 3.1'
 gem 'activeadmin', '~> 3.2'
 gem 'activeadmin_addons', '~> 1.10'
 
+# Use for generating ERD diagrams
+gem 'rails-erd'
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem 'debug', platforms: %i[mri windows], require: 'debug/prelude'
