@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
-gem 'rails', '~> 7.2.1', '>= 7.2.1.1'
+gem 'rails', '~> 7.2.1'
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem 'sprockets-rails'
 # Use postgresql as the database for Active Record
@@ -112,7 +112,7 @@ group :test do
   # For testing background jobs
   gem 'rspec-sidekiq', '~> 5.0'
   # For cleaning the database between tests
-  gem 'database_cleaner', '~> 2.0'
+  gem 'database_cleaner', '~> 2.1'
 end
 
 gem 'sidekiq', '~> 7.3'
