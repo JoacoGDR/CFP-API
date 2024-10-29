@@ -112,7 +112,7 @@ group :test do
   # For testing background jobs
   gem 'rspec-sidekiq', '~> 5.0'
   # For cleaning the database between tests
-  gem 'database_cleaner', '~> 2.0'
+  gem 'database_cleaner', '~> 2.1'
 end
 
 gem 'sidekiq', '~> 7.3'
