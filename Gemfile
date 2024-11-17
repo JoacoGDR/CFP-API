@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
-gem 'rails', '~> 7.2.1'
+gem 'rails', '~> 7.2.2'
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem 'sprockets-rails'
 # Use postgresql as the database for Active Record
@@ -66,7 +66,7 @@ group :development, :test do
   gem 'pry-byebug'
 
   # gem "rubocop-rails-omakase", require: false
-  gem 'rubocop', '~> 1.67', require: false
+  gem 'rubocop', '~> 1.68', require: false
   gem 'rubocop-performance', require: false
   gem 'rubocop-rails', require: false
   gem 'rubocop-rspec', require: false
@@ -86,7 +86,7 @@ group :development, :test do
 
   # Static analysis for security vulnerabilities [https://brakemanscanner.org/]
   gem 'parallel_tests', '~> 4'
-  gem 'rspec-rails', '~> 7.0.0'
+  gem 'rspec-rails', '~> 7.1.0'
 end
 
 group :development do
