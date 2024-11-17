@@ -612,6 +612,7 @@ DEPENDENCIES
   pry-byebug
   puma (>= 5.0)
   rails (~> 7.2.2)
+  rails-erd
   rails-i18n (~> 7.0)
   rspec-deep-ignore-order-matcher
   rspec-rails (~> 7.1.0)
