@@ -1,7 +1,7 @@
 class SpeciesSerializer < ActiveModel::Serializer
-  attributes :id, :name, :is_quotated?
+  attributes :id, :name, :quotated?
 
-  def is_quotated?
+  def quotated?
     object.catch_quotas.any?
   end
 end
