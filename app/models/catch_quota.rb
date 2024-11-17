@@ -15,6 +15,8 @@
 class CatchQuota < ApplicationRecord
   self.table_name = 'catch_quotas'
   belongs_to :owner, polymorphic: true
+  belongs_to :catch_quota_allocation, optional: true
+  belongs_to :species
 
   has_many :outbound_transfers, class_name: 'Transfer', foreign_key: 'source_quota_id',
                                 dependent: :nullify, inverse_of: :source_quota

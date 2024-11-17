@@ -13,5 +13,5 @@ class Species < ApplicationRecord
   has_many :catch_quotas, dependent: :destroy
   has_many :catch_quota_allocations, dependent: :destroy
 
-  scope :quotated, -> { joins(:catch_quotas).distinct }
+  scope :quotated, -> { where(id: CatchQuota.select(:species_id).distinct) }
 end
