@@ -12,5 +12,5 @@
 #
 class Sanction < ApplicationRecord
   belongs_to :vessel
-  enum :type, { :warning=> 0, :fine=> 1, :suspension=> 2, :revocation=> 3 }
+  enum :type, { warning: 0, fine: 1, suspension: 2, revocation: 3 }
 end
