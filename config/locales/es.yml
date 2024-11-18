@@ -1,0 +1,7 @@
+es:
+  errors:
+    messages:
+      invalid_credentials: "Las credenciales son inválidas"
+      missing_credentials: "Las credenciales son requeridas"
+      
+
