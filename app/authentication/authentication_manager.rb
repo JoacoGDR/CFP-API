@@ -51,16 +51,32 @@ class AuthenticationManager
   end
 
   def valid_nonce?
-    nonce > last_nonce
+    return true unless validate_nonce?
+    return valid_newer_nonce? if last_nonce.blank?
+
+    nonce.to_i > last_nonce.to_i && valid_newer_nonce?
+  end
+
+  def valid_newer_nonce?
+    actual_nonce_age = Time.zone.now.to_i - nonce.to_i
+    actual_nonce_age < max_nonce_age && actual_nonce_age >= 0
   end
 
   def valid_digest?
-    ActiveSupport::SecurityUtils.secure_compare(verified_digest, digest_header)
+    ActiveSupport::SecurityUtils.secure_compare(verified_digest.strip, digest_header.strip)
   end
 
   def verified_digest
     digest_method = OpenSSL::Digest.new('SHA256')
     hash = OpenSSL::HMAC.digest(digest_method, current_consumer.api_secret, key_header)
     Base64.strict_encode64(hash)
+  end
+
+  def max_nonce_age
+    @max_nonce_age ||= CredentialsHelper.fetch_secret(:max_nonce_age, default: 300)
+  end
+
+  def validate_nonce?
+    CredentialsHelper.fetch_secret(:validate_nonce, default: true)
   end
 end

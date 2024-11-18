@@ -21,7 +21,7 @@ RSpec.configure do |config|
   require 'faker'
   require 'factory_bot'
   require 'webmock/rspec'
-
+  
   RSpec.configure do |config|
     config.include FactoryBot::Syntax::Methods
     Faker::Config.random = Random.new(config.seed)

@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :catch_quota do
-    association :owner, factory: [:vessel, :public_entity].sample
+    association :owner, factory: %i[vessel public_entity].sample
     catch_quota_allocation
     species
     quota { Faker::Number.decimal(l_digits: 2) }

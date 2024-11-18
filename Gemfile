@@ -24,7 +24,7 @@ gem 'jbuilder'
 
 # Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
 # gem "bcrypt", "~> 3.1.7"
-
+gem 'active_model_serializers', '~> 0.10.14'
 # Use Active Storage variant to resize images
 # [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 gem 'ostruct'

@@ -1,7 +1,7 @@
 module Api
   class SpeciesController < ApiController
     def index
-      render_paginated species, root_key: :species
+      render_paginated species, root_key: :species, serializer: SpeciesSerializer
     end
 
     private

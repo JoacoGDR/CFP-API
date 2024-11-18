@@ -11,7 +11,7 @@ module ExceptionHandler
 
   private
 
-  def render_error(message: nil, meta: nil, status: :bad_request)
+  def render_error(message = nil, meta: nil, status: :bad_request)
     render json: { error: message, meta: meta }, status: status
   end
 

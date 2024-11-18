@@ -24,7 +24,7 @@ class ApiController < ActionController::API
   end
 
   def authentication_manager
-    @authentication_manager ||= AuthenticationManager.new(headers)
+    @authentication_manager ||= AuthenticationManager.new(request.headers)
   end
 
   def referrer_policy
