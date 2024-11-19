@@ -3,9 +3,10 @@ RSpec.describe Api::SpeciesController, type: :controller do
   describe 'GET #index' do
     subject(:get_species) { get :index, params: params }
 
-    let(:params) { { page: page, page_size: page_size }.compact }
+    let(:params) { { page: page, page_size: page_size, quotated: quotated }.compact }
     let(:page) { nil }
     let(:page_size) { nil }
+    let(:quotated) { nil }
 
     context 'when authenticated' do
       include_context 'with authenticated consumer'
@@ -35,14 +36,14 @@ RSpec.describe Api::SpeciesController, type: :controller do
 
       context 'when the quotated param is passed' do
         context 'when quotated is true' do
-          let(:params) { { quotated: true } }
+          let(:quotated) { true }
           let(:expected_page_size) { 1 }
 
           it_behaves_like 'basic index endpoint with pagination'
         end
 
         context 'when quotated is false' do
-          let(:params) { { quotated: false } }
+          let(:quotated) { false }
           let(:expected_page_size) { 2 }
 
           it_behaves_like 'basic index endpoint with pagination'

@@ -30,6 +30,12 @@ Metrics/BlockLength:
     - config/environments/*
     - db/schema.rb
 
+RSpec/NestedGroups:
+  Enabled: false
+
+RSpec/MultipleMemoizedHelpers:
+  Enabled: false
+
 Style/FrozenStringLiteralComment:
   Enabled: false
 
