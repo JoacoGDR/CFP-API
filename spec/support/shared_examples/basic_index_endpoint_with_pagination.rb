@@ -13,6 +13,7 @@ shared_examples 'basic index endpoint with pagination' do
   end
 
   it 'returns the current page information' do
-    expect(response_body['meta_data']['pages_information']['current_page']).to eq(page)
+    page_number = page || 1
+    expect(response_body['meta_data']['pages_information']['current_page']).to eq(page_number)
   end
 end

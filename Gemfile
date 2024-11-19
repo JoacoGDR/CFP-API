@@ -61,6 +61,8 @@ gem 'activeadmin_addons', '~> 1.10'
 # Use for generating ERD diagrams
 gem 'rails-erd'
 
+gem 'wannabe_bool'
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem 'debug', platforms: %i[mri windows], require: 'debug/prelude'

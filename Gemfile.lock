@@ -553,6 +553,7 @@ GEM
       axiom-types (~> 0.1)
       coercible (~> 1.0)
       descendants_tracker (~> 0.0, >= 0.0.3)
+    wannabe_bool (0.7.1)
     warden (1.2.9)
       rack (>= 2.0.9)
     web-console (4.2.1)
@@ -644,6 +645,7 @@ DEPENDENCIES
   turbo-rails
   tzinfo-data
   vcr (~> 6.3)
+  wannabe_bool
   web-console
   webmock (~> 3.24)
   write_xlsx

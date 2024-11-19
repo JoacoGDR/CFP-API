@@ -28,7 +28,7 @@ module Pagination
   end
 
   def page_size
-    return params[:per_page] if params[:per_page].present?
+    return params[:page_size] if params[:page_size].present?
 
     DEFAULT_PAGE_SIZE
   end
