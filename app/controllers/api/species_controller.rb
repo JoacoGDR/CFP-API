@@ -2,6 +2,11 @@ module Api
   class SpeciesController < ApiController
     include OrderHandler
 
+    def create
+      create_species
+      render_created_message
+    end
+
     def show
       render json: single_species, serializer: SingleSpeciesSerializer
     end
@@ -13,6 +18,19 @@ module Api
     end
 
     private
+
+    def render_created_message
+      render json: { message: 'Species successfully created', url: api_species_url(@new_species) },
+             status: :created
+    end
+
+    def create_params
+      params.require(:species).permit(:name)
+    end
+
+    def create_species
+      @new_species = Species.create!(create_params)
+    end
 
     def single_species
       Species.includes(:catch_quota_allocations, :catch_quotas, :catches)

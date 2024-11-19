@@ -4,24 +4,24 @@ module Request
       super(path, **params, as: :json)
     end
 
-    def post(*args)
-      super(*args, as: :json)
+    def post(path, **params)
+      super(path, **params, as: :json)
     end
 
-    def update(*args)
-      super(*args, as: :json)
+    def update(path, **params)
+      super(path, **params, as: :json)
     end
 
-    def put(*args)
-      super(*args, as: :json)
+    def put(path, **params)
+      super(path, **params, as: :json)
     end
 
-    def patch(*args)
-      super(*args, as: :json)
+    def patch(path, **params)
+      super(path, **params, as: :json)
     end
 
-    def delete(*args)
-      super(*args, as: :json)
+    def delete(path, **params)
+      super(path, **params, as: :json)
     end
 
     def json_args(path, params = {})
