@@ -15,7 +15,8 @@ module Api
     private
 
     def single_species
-      Species.find(params.require(:id)).includes(:catch_quota_allocations, :catch_quotas, :catches)
+      Species.includes(:catch_quota_allocations, :catch_quotas, :catches)
+             .find(params.require(:id))
     end
 
     def filtered_species

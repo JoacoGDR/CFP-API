@@ -62,4 +62,28 @@ RSpec.describe Api::SpeciesController, type: :controller do
       end
     end
   end
+
+  describe 'GET #show' do
+    subject(:get_single_species) { get :show, params: { id: species_id } }
+
+    let(:species_id) { species.id }
+    let(:species) { create(:species, :with_quotas) }
+
+    context 'when authenticated' do
+      include_context 'with authenticated consumer'
+
+      before { get_single_species }
+
+      let(:expected_keys) { %w[id name catch_quota_allocations catch_quotas catches] }
+
+      it_behaves_like 'basic show endpoint'
+    end
+
+    context 'when not authenticated' do
+      it 'returns unauthorized' do
+        get_single_species
+        expect(response).to have_http_status(:unauthorized)
+      end
+    end
+  end
 end
