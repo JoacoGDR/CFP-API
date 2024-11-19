@@ -86,4 +86,27 @@ RSpec.describe Api::SpeciesController, type: :controller do
       end
     end
   end
+
+  describe 'POST #create' do
+    subject(:create_species) { post :create, params: params }
+
+    let(:params) { { species: { name: name } } }
+    let(:name) { 'New Species' }
+
+    context 'when authenticated' do
+      include_context 'with authenticated consumer'
+
+      it_behaves_like 'basic create endpoint' do
+        let(:model) { Species }
+        let(:url) { api_species_url(Species.last) }
+      end
+    end
+
+    context 'when not authenticated' do
+      it 'returns unauthorized' do
+        create_species
+        expect(response).to have_http_status(:unauthorized)
+      end
+    end
+  end
 end

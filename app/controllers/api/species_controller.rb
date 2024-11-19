@@ -20,7 +20,7 @@ module Api
     private
 
     def render_created_message
-      render json: { message: 'Species successfully created', url: species_url(@new_species) },
+      render json: { message: 'Species successfully created', url: api_species_url(@new_species) },
              status: :created
     end
 
