@@ -117,14 +117,14 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_20_034122) do
     t.index ["name"], name: "index_consumers_on_name", unique: true
   end
 
-  create_table "maximum_allowable_catches", force: :cascade do |t|
+  create_table "maximum_allowed_catches", force: :cascade do |t|
     t.string "detail", default: "", null: false
     t.bigint "species_id", null: false
     t.float "weight", null: false
     t.date "start_date", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["species_id"], name: "index_maximum_allowable_catches_on_species_id"
+    t.index ["species_id"], name: "index_maximum_allowed_catches_on_species_id"
   end
 
   create_table "public_entities", force: :cascade do |t|
@@ -201,7 +201,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_20_034122) do
   add_foreign_key "company_ownership_changes", "business_groups", column: "new_owner_id"
   add_foreign_key "company_ownership_changes", "business_groups", column: "previous_owner_id"
   add_foreign_key "company_ownership_changes", "companies"
-  add_foreign_key "maximum_allowable_catches", "species"
+  add_foreign_key "maximum_allowed_catches", "species"
   add_foreign_key "sanctions", "vessels"
   add_foreign_key "transfers", "catch_quotas", column: "destination_quota_id"
   add_foreign_key "transfers", "catch_quotas", column: "source_quota_id"

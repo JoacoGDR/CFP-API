@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "posts#index"
   get 'api/sepecies' => 'api/species#index'
+  get 'api/species/:id' => 'api/species#show'
 end
 
 # == Route Map
