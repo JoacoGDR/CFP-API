@@ -7,6 +7,7 @@
 #  previous_owner_id :bigint(8)        not null
 #  new_owner_id      :bigint(8)        not null
 #  change_date       :date             not null
+#  detail            :string
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
 #

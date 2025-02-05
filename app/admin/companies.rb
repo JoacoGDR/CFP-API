@@ -9,8 +9,12 @@ ActiveAdmin.register Company do
     selectable_column
     id_column
     column :name
+    column :business_group do |company|
+      unless company.business_group.nil?
+        link_to company.business_group.name, admin_business_group_path(company.business_group)
+      end
+    end
     column :created_at
-    column :business_group
     actions
   end
 

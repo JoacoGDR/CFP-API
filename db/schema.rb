@@ -66,6 +66,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_20_034122) do
     t.bigint "species_id", null: false
     t.float "quota", null: false
     t.date "start_date", null: false
+    t.date "end_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["catch_quota_allocation_id"], name: "index_catch_quotas_on_catch_quota_allocation_id"
@@ -99,6 +100,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_20_034122) do
     t.bigint "previous_owner_id", null: false
     t.bigint "new_owner_id", null: false
     t.date "change_date", null: false
+    t.string "detail"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["company_id"], name: "index_company_ownership_changes_on_company_id"
@@ -164,7 +166,6 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_20_034122) do
 
   create_table "vessel_name_changes", force: :cascade do |t|
     t.bigint "vessel_id", null: false
-    t.string "previous_name", null: false
     t.string "new_name", null: false
     t.date "change_date", null: false
     t.datetime "created_at", null: false
@@ -177,6 +178,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_20_034122) do
     t.bigint "previous_owner_id", null: false
     t.bigint "new_owner_id", null: false
     t.date "change_date", null: false
+    t.string "detail"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["new_owner_id"], name: "index_vessel_ownership_changes_on_new_owner_id"

@@ -6,6 +6,7 @@ class CreateCatchQuotas < ActiveRecord::Migration[7.2]
       t.references :species, foreign_key: true, null: false
       t.float :quota, null: false
       t.date :start_date, null: false
+      t.date :end_date
       t.timestamps
     end
   end
