@@ -152,12 +152,14 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_20_034122) do
 
   create_table "transfers", force: :cascade do |t|
     t.bigint "source_quota_id", null: false
-    t.bigint "destination_quota_id", null: false
+    t.bigint "target_quota_id", null: false
+    t.date "date", null: false
+    t.string "detail"
     t.float "amount", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["destination_quota_id"], name: "index_transfers_on_destination_quota_id"
     t.index ["source_quota_id"], name: "index_transfers_on_source_quota_id"
+    t.index ["target_quota_id"], name: "index_transfers_on_target_quota_id"
   end
 
   create_table "vessel_name_changes", force: :cascade do |t|
@@ -203,8 +205,8 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_20_034122) do
   add_foreign_key "company_ownership_changes", "companies"
   add_foreign_key "maximum_allowed_catches", "species"
   add_foreign_key "sanctions", "vessels"
-  add_foreign_key "transfers", "catch_quotas", column: "destination_quota_id"
   add_foreign_key "transfers", "catch_quotas", column: "source_quota_id"
+  add_foreign_key "transfers", "catch_quotas", column: "target_quota_id"
   add_foreign_key "vessel_name_changes", "vessels"
   add_foreign_key "vessel_ownership_changes", "companies", column: "new_owner_id"
   add_foreign_key "vessel_ownership_changes", "companies", column: "previous_owner_id"

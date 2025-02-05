@@ -2,6 +2,7 @@ require_relative 'boot'
 
 require 'rails/all'
 require 'wannabe_bool'
+require 'active_job/railtie'
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
@@ -12,7 +13,14 @@ module CfpApi
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.2
 
-    config.api_only = true
+    config.api_only = false
+    config.app_generators.scaffold_controller = :scaffold_controller
+
+    config.active_job.queue_adapter = :sidekiq
+
+    # config.autoload_paths += %W[#{config.root}/app/utils]
+
+
 
     # Please, add to the `ignore` list any other `lib` subdirectories that do
     # not contain `.rb` files, or that should not be reloaded or eager loaded.
@@ -26,5 +34,6 @@ module CfpApi
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
+    
   end
 end

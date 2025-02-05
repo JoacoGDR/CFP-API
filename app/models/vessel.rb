@@ -17,4 +17,17 @@ class Vessel < ApplicationRecord
   has_many :catch_quota_allocations, as: :owner, dependent: :destroy
   has_many :vessel_ownership_changes, dependent: :delete_all
   has_many :vessel_name_changes, dependent: :delete_all
+  has_many :sanctions, dependent: :destroy
+
+  validates :registration_code, uniqueness: true
+  validates :name, :registration_code, presence: true
+
+  scope :by_company, ->(company_id) { where({ company_id: company_id }.compact) }
+  scope :by_group, ->(group_id) {
+    if group_id.present?
+      joins(:company).where(companies: { business_group_id: group_id })
+    else
+      all
+    end
+  }
 end

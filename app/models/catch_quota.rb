@@ -20,6 +20,11 @@ class CatchQuota < ApplicationRecord
 
   has_many :outbound_transfers, class_name: 'Transfer', foreign_key: 'source_quota_id',
                                 dependent: :nullify, inverse_of: :source_quota
-  has_many :inbound_transfers, class_name: 'Transfer', foreign_key: 'destination_quota_id',
-                               dependent: :nullify, inverse_of: :destination_quota
+  has_many :inbound_transfers, class_name: 'Transfer', foreign_key: 'target_quota_id',
+                               dependent: :nullify, inverse_of: :target_quota
+
+
+  def owner_class
+    owner_type.constantize
+  end
 end

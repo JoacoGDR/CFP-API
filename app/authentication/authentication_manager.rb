@@ -16,8 +16,10 @@ class AuthenticationManager
       raise Exceptions::MissingCredentials,
             I18n.t('error.messages.missing_credentials')
     end
-    raise Exceptions::InvalidKey, I18n.t('error.messages.invalid_credentials') if invalid_key?
-
+    if invalid_key?
+      raise Exceptions::InvalidKey,
+            I18n.t('error.messages.invalid_credentials')
+    end
     if invalid_credentials?
       raise Exceptions::InvalidCredentials,
             I18n.t('error.messages.invalid_credentials')

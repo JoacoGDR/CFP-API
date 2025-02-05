@@ -5,6 +5,7 @@ class CreateVesselOwnershipChanges < ActiveRecord::Migration[7.2]
       t.references :previous_owner, null: false, foreign_key: { to_table: :companies }
       t.references :new_owner, null: false, foreign_key: { to_table: :companies }
       t.date :change_date, null: false
+      t.string :detail
       t.timestamps
     end
   end
