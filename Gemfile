@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+gem 'font-awesome-rails', git: 'https://github.com/bokmann/font-awesome-rails.git'
+
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem 'rails', '~> 7.2.2'
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
@@ -38,6 +40,8 @@ gem 'bootsnap', require: false
 gem 'devise', '~> 4.9'
 gem 'devise-i18n'
 
+gem 'bootstrap-sass', '~> 3.4'
+
 gem 'httparty', '~> 0.22.0'
 
 gem 'rails-i18n', '~> 7.0'
@@ -57,6 +61,11 @@ gem 'health_check', '~> 3.1'
 
 gem 'activeadmin', '~> 3.2'
 gem 'activeadmin_addons', '~> 1.10'
+gem 'activeadmin_dark_color_scheme', '~> 0.1.13'
+
+gem 'sassc-rails', '~> 2.1'
+
+gem 'coffee-rails', '~> 5.0'
 
 # Use for generating ERD diagrams
 gem 'rails-erd'

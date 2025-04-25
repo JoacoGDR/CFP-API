@@ -13,7 +13,7 @@ RSpec.describe CatchQuota, type: :model do
   it {
     expect(catch_quota).to have_many(:inbound_transfers)
       .class_name('Transfer')
-      .with_foreign_key('destination_quota_id')
-      .dependent(:nullify).inverse_of(:destination_quota)
+      .with_foreign_key('target_quota_id')
+      .dependent(:nullify).inverse_of(:target_quota)
   }
 end

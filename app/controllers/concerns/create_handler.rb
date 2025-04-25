@@ -3,8 +3,7 @@ module CreateHandler
 
   def render_created_message(new_model)
     render json: { message: "#{new_model.class_name} successfully created",
-                   url: model_url(new_model.class_name)
-                 },
+                   url: model_url(new_model.class_name) },
            status: :created
   end
 

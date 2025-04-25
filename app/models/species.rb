@@ -16,7 +16,6 @@ class Species < ApplicationRecord
 
   scope :quotated, -> { where(id: CatchQuota.select(:species_id).distinct) }
   scope :unquotated, -> { where.not(id: CatchQuota.select(:species_id).distinct) }
-
   scope :by_quotated_status, lambda { |status|
     case status
     when true

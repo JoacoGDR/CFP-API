@@ -24,6 +24,7 @@ module Pagination
   end
 
   def paginate_collection(collection)
+    params.permit(:page, :page_size)
     collection.page(params[:page]).per(page_size)
   end
 

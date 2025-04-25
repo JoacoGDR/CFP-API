@@ -66,6 +66,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_20_034122) do
     t.bigint "species_id", null: false
     t.float "quota", null: false
     t.date "start_date", null: false
+    t.date "end_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["catch_quota_allocation_id"], name: "index_catch_quotas_on_catch_quota_allocation_id"
@@ -99,6 +100,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_20_034122) do
     t.bigint "previous_owner_id", null: false
     t.bigint "new_owner_id", null: false
     t.date "change_date", null: false
+    t.string "detail"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["company_id"], name: "index_company_ownership_changes_on_company_id"
@@ -152,17 +154,18 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_20_034122) do
 
   create_table "transfers", force: :cascade do |t|
     t.bigint "source_quota_id", null: false
-    t.bigint "destination_quota_id", null: false
+    t.bigint "target_quota_id", null: false
+    t.date "date", null: false
+    t.string "detail"
     t.float "amount", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["destination_quota_id"], name: "index_transfers_on_destination_quota_id"
     t.index ["source_quota_id"], name: "index_transfers_on_source_quota_id"
+    t.index ["target_quota_id"], name: "index_transfers_on_target_quota_id"
   end
 
   create_table "vessel_name_changes", force: :cascade do |t|
     t.bigint "vessel_id", null: false
-    t.string "previous_name", null: false
     t.string "new_name", null: false
     t.date "change_date", null: false
     t.datetime "created_at", null: false
@@ -175,6 +178,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_20_034122) do
     t.bigint "previous_owner_id", null: false
     t.bigint "new_owner_id", null: false
     t.date "change_date", null: false
+    t.string "detail"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["new_owner_id"], name: "index_vessel_ownership_changes_on_new_owner_id"
@@ -203,8 +207,8 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_20_034122) do
   add_foreign_key "company_ownership_changes", "companies"
   add_foreign_key "maximum_allowed_catches", "species"
   add_foreign_key "sanctions", "vessels"
-  add_foreign_key "transfers", "catch_quotas", column: "destination_quota_id"
   add_foreign_key "transfers", "catch_quotas", column: "source_quota_id"
+  add_foreign_key "transfers", "catch_quotas", column: "target_quota_id"
   add_foreign_key "vessel_name_changes", "vessels"
   add_foreign_key "vessel_ownership_changes", "companies", column: "new_owner_id"
   add_foreign_key "vessel_ownership_changes", "companies", column: "previous_owner_id"

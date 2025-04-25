@@ -8,7 +8,7 @@ RSpec.describe Transfer, type: :model do
   }
 
   it {
-    expect(transfer).to belong_to(:destination_quota)
+    expect(transfer).to belong_to(:target_quota)
       .class_name('CatchQuota')
       .inverse_of(:inbound_transfers)
   }
