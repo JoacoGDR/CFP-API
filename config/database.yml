@@ -1,11 +1,11 @@
 development: &default
   adapter: postgresql
   encoding: unicode
-  database: cfp-api_development
+  database: <%= ENV["DB_NAME"] || "cfpdb" %>
   pool: <%= ENV["DB_POOL"] || ENV['RAILS_MAX_THREADS'] || 5 %>
   username: <%= ENV["DB_USRERNAME"] %>
   password: <%= ENV["DB_PASSWORD"] %>
-  host: <%= ENV.fetch('DB_HOST', 'localhost') %>
+  host: db
   port: <%= ENV.fetch('DB_PORT', 5432) %>
 
 # Warning: The database defined as "test" will be erased and
