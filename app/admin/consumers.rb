@@ -19,7 +19,7 @@ ActiveAdmin.register Consumer do
     f.actions
   end
 
-  show do |consumer|
+  show do |_consumer|
     attributes_table do
       row :id
       row :name

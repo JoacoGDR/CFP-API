@@ -27,13 +27,14 @@ ActiveAdmin.register Species do
         table_for species.catch_quotas.non_expired do
           column :id
           column :quota
-            column :owner do |quota|
-              if quota.owner_type == 'Vessel'
-                link_to quota.owner.name, admin_vessel_path(quota.owner)
-              else quota.owner_type == 'PublicEntity'
-                link_to quota.owner.name, admin_public_entity_path(quota.owner)
-              end
+          column :owner do |quota|
+            if quota.owner_type == 'Vessel'
+              link_to quota.owner.name, admin_vessel_path(quota.owner)
+            else
+              quota.owner_type
+              link_to quota.owner.name, admin_public_entity_path(quota.owner)
             end
+          end
         end
       end
     end

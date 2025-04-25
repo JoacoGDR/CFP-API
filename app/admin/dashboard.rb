@@ -4,17 +4,17 @@ ActiveAdmin.register_page 'Dashboard' do
   menu priority: 1, label: proc { I18n.t('active_admin.dashboard') }
 
   content title: proc { I18n.t('active_admin.dashboard') } do
-      columns do
-        column do
-          panel 'Ultimas capturas' do
-            table_for Catch.order(date: :desc) do
-              column('Buque', &:vessel)
-              column('Especie', &:species)
-              column('Peso', &:weight)
-              column('Fecha', &:date)
-            end
+    columns do
+      column do
+        panel 'Ultimas capturas' do
+          table_for Catch.order(date: :desc) do
+            column('Buque', &:vessel)
+            column('Especie', &:species)
+            column('Peso', &:weight)
+            column('Fecha', &:date)
           end
         end
+      end
     end
 
     # Here is an example of a simple dashboard with columns and panels.

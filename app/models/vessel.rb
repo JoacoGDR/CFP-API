@@ -23,7 +23,7 @@ class Vessel < ApplicationRecord
   validates :name, :registration_code, presence: true
 
   scope :by_company, ->(company_id) { where({ company_id: company_id }.compact) }
-  scope :by_group, ->(group_id) {
+  scope :by_group, lambda { |group_id|
     if group_id.present?
       joins(:company).where(companies: { business_group_id: group_id })
     else

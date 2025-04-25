@@ -24,7 +24,6 @@ class CatchQuota < ApplicationRecord
   has_many :inbound_transfers, class_name: 'Transfer', foreign_key: 'target_quota_id',
                                dependent: :nullify, inverse_of: :target_quota
 
-
   scope :non_expired, -> { where('end_date IS NULL OR end_date >= ?', Date.current) }
   scope :expired, -> { where('end_date < ?', Date.current) }
 
@@ -32,7 +31,7 @@ class CatchQuota < ApplicationRecord
     owner_type.constantize
   end
 
-  def is_current?
+  def current?
     end_date.nil? || end_date >= Date.current
   end
 end

@@ -67,7 +67,6 @@ ActiveAdmin.register Vessel do
           column :change_date
         end
       end
-
     end
     active_admin_comments
   end

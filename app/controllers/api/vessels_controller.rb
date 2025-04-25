@@ -18,16 +18,15 @@ module Api
     end
 
     def add_ownership_change
-      ownership_change = vessel.vessel_ownership_changes.create!(ownership_change_params)
+      vessel.vessel_ownership_changes.create!(ownership_change_params)
       update_vessel_owner
       render_ownership_change_message
     end
 
     private
 
-    def 
-
-    def vessel_params
+    def
+    def(_vessel_params)
       params.require(:vessel).require(:name, :registration_code).permit(:company_id)
     end
 
@@ -52,7 +51,6 @@ module Api
     def index_params
       params.permit(%i[company_id business_group_id]).to_h
     end
-
 
     def single_vessel
       Vessel.includes(:vessel_name_changes, :vessel_ownership_changes,

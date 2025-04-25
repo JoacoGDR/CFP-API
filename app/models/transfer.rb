@@ -15,5 +15,5 @@ class Transfer < ApplicationRecord
   belongs_to :source_quota, class_name: 'CatchQuota',
                             inverse_of: :outbound_transfers
   belongs_to :target_quota, class_name: 'CatchQuota',
-                                 inverse_of: :inbound_transfers
+                            inverse_of: :inbound_transfers
 end
