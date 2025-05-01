@@ -12,23 +12,22 @@ class AuthenticationManager
   end
 
   def authenticate_request!
-    if missing_credentials?
-      raise Exceptions::MissingCredentials,
-            I18n.t('error.messages.missing_credentials')
-    end
-    if invalid_key?
-      raise Exceptions::InvalidKey,
-            I18n.t('error.messages.invalid_credentials')
-    end
-    if invalid_credentials?
-      raise Exceptions::InvalidCredentials,
-            I18n.t('error.messages.invalid_credentials')
-    end
+    validate_credentials!
 
     current_consumer.update(last_nonce: nonce)
   end
 
   private
+
+  def validate_credentials!
+    if missing_credentials?
+      raise Exceptions::MissingCredentials, I18n.t('error.messages.missing_credentials')
+    end
+    raise Exceptions::InvalidKey, I18n.t('error.messages.invalid_credentials') if invalid_key?
+    return unless invalid_credentials?
+
+    raise Exceptions::InvalidCredentials, I18n.t('error.messages.invalid_credentials')
+  end
 
   def invalid_credentials?
     !(current_consumer.present? && valid_nonce? && valid_digest?)

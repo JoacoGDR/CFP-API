@@ -31,7 +31,8 @@ module Api
     end
 
     def render_ownership_change_message
-      render json: { message: 'Ownership change successfully created', url: api_vessel_url(vessel) },
+      render json: { message: 'Ownership change successfully created',
+                     url: api_vessel_url(vessel) },
              status: :created
     end
 
