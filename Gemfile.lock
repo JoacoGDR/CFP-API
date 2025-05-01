@@ -131,7 +131,7 @@ GEM
     bootstrap-sass (3.4.1)
       autoprefixer-rails (>= 5.2.1)
       sassc (>= 2.0.0)
-    brakeman (6.2.2)
+    brakeman (7.0.2)
       racc
     builder (3.3.0)
     bullet (8.0.0)
@@ -625,7 +625,7 @@ DEPENDENCIES
   annotate
   bootsnap
   bootstrap-sass (~> 3.4)
-  brakeman
+  brakeman (~> 7.0.2)
   bullet
   byebug
   coffee-rails (~> 5.0)

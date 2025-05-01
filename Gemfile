@@ -90,7 +90,7 @@ group :development, :test do
   gem 'dotenv-rails'
 
   # Use for static analysis of security vulnerabilities
-  gem 'brakeman', require: false
+  gem 'brakeman', '~> 7.0.2', require: false
 
   # Use for static analysis of code quality
   gem 'rubycritic', require: false
