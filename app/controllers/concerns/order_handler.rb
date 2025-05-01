@@ -2,7 +2,7 @@ module OrderHandler
   private
 
   def ordered_collection(collection)
-    return collection unless valid_order_params?
+    return collection unless order_by_param.present? && valid_order_params?
 
     collection.order(order_by_param => order_param)
   end
