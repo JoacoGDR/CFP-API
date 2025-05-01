@@ -3,9 +3,9 @@ development: &default
   encoding: unicode
   database: <%= ENV["DB_NAME"] || "cfpdb" %>
   pool: <%= ENV["DB_POOL"] || ENV['RAILS_MAX_THREADS'] || 5 %>
-  username: <%= ENV["DB_USRERNAME"] %>
-  password: <%= ENV["DB_PASSWORD"] %>
-  host: db
+  username: <%= ENV["DB_USRERNAME"] || 'postgres' %>
+  password: <%= ENV["DB_PASSWORD"] || 'password' %>
+  host: <%= ENV.fetch('DB_HOST', 'localhost') %>
   port: <%= ENV.fetch('DB_PORT', 5432) %>
 
 # Warning: The database defined as "test" will be erased and
@@ -13,7 +13,7 @@ development: &default
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: cfp-api_test<%= ENV['TEST_ENV_NUMBER'] %>
+  database: <%= ENV['DB_NAME'] || 'test_db'%><%= ENV['TEST_ENV_NUMBER'] %>
 
 
 production:

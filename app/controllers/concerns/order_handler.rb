@@ -2,7 +2,9 @@ module OrderHandler
   private
 
   def ordered_collection(collection)
-    collection.order(Arel.sql("#{order_by_param} #{order_param}"))
+    return collection unless valid_order_params?
+
+    collection.order(order_by_param => order_param)
   end
 
   def valid_order_params?

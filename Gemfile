@@ -84,6 +84,7 @@ group :development, :test do
   gem 'rubocop-performance', require: false
   gem 'rubocop-rails', require: false
   gem 'rubocop-rspec', require: false
+  gem 'rubocop-rake', require: false
 
   # Use for storing credentials and not uploading them to github. Loads ENV variables from .env file
   gem 'dotenv-rails'

@@ -50,22 +50,30 @@ jobs:
           ruby-version: .ruby-version
           bundler-cache: true
 
+      - name: Install RuboCop
+        run: bundle install
+
       - name: Lint code for consistent style
-        run: rubocop
+        run: bundle exec rubocop --config .rubocop.yml
 
   test:
     runs-on: ubuntu-latest
 
-    # services:
-    #  redis:
-    #    image: redis
-    #    ports:
-    #      - 6379:6379
-    #    options: --health-cmd "redis-cli ping" --health-interval 10s --health-timeout 5s --health-retries 5
+    services:
+      postgres:
+        image: postgres:17.4
+        ports:
+          - 5432:5432
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: password
+          POSTGRES_DB: test_db
+        options: >-
+          --health-cmd "pg_isready -U postgres"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
     steps:
-      - name: Install packages
-        run: sudo apt-get update && sudo apt-get install --no-install-recommends -y google-chrome-stable curl libjemalloc2 libvips sqlite3
-
       - name: Checkout code
         uses: actions/checkout@v4
 
@@ -75,11 +83,21 @@ jobs:
           ruby-version: .ruby-version
           bundler-cache: true
 
+      - name: Wait for PostgreSQL to be ready
+        run: |
+          for i in {1..10}; do
+            pg_isready -h localhost -U postgres && break
+            sleep 2
+          done
+
       - name: Run tests
         env:
           RAILS_ENV: test
-          # REDIS_URL: redis://localhost:6379/0
-        run: bundle exec rspec spec
+          DB_HOST: localhost
+          DB_USERNAME: postgres
+          DB_PASSWORD: password
+          DB_NAME: test_db
+        run: bundle exec rails db:migrate && bundle exec rspec spec
 
       - name: Keep screenshots from failed system tests
         uses: actions/upload-artifact@v4
